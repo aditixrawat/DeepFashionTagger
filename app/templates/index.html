@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeepFashionTagger</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1 class="brand"><span class="brand-accent">Deep</span>FashionTagger</h1>
+      <p class="lead">Advanced AI fashion analysis — editorial quality. Upload an image for detailed tags.</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="upload-panel">
+      <h2>Upload Your Fashion Image</h2>
+      <p class="muted">Drop or select a photo and let the AI analyze its style DNA.</p>
+
+      <form action="/" method="POST" enctype="multipart/form-data" class="upload-form">
+        <label class="upload-box">
+          <input id="imageInput" type="file" name="image" accept="image/*" />
+          <div class="upload-inner">
+            <div class="upload-icon">📁</div>
+            <div class="upload-txt">Click or drop to upload</div>
+            <div id="fileName" class="file-name">No file chosen</div>
+          </div>
+        </label>
+
+        <div class="controls">
+          <button type="submit" class="btn btn-primary">Analyze</button>
+        </div>
+      </form>
+
+      {% if error %}
+        <div class="notice error">{{ error }}</div>
+      {% endif %}
+    </section>
+
+    <section class="results-panel">
+      <h2>Analysis Results</h2>
+
+      <div class="preview-area">
+        {% if image_url %}
+          <img id="previewImg" src="{{ image_url }}" alt="Uploaded image">
+        {% else %}
+          <div class="placeholder">Upload an image to preview</div>
+        {% endif %}
+      </div>
+
+      <div class="dictionary">
+        <h3>Fashion Dictionary</h3>
+        {% if prediction %}
+          <pre class="json-block">{{ prediction | tojson(indent=2) }}</pre>
+          <div class="tag-list">
+            {% for tag in prediction.tags %}
+              <span class="pill">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="muted">No analysis yet. Upload an image to see structured attributes.</p>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
