@@ -9,6 +9,7 @@ def create_app():
     # absolute path for uploads (inside app/static/uploads)
     upload_folder = os.path.join(app.root_path, 'static', 'uploads')
     os.makedirs(upload_folder, exist_ok=True)
+    
     app.config['UPLOAD_FOLDER'] = upload_folder
     app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB limit
 

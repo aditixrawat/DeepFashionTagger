@@ -26,7 +26,6 @@
           <div class="upload-inner">
             <div class="upload-icon">📁</div>
             <div class="upload-txt">Click or drop to upload</div>
-            <div id="fileName" class="file-name">No file chosen</div>
           </div>
         </label>
 
@@ -50,20 +49,29 @@
           <div class="placeholder">Upload an image to preview</div>
         {% endif %}
       </div>
-
       <div class="dictionary">
         <h3>Fashion Dictionary</h3>
         {% if prediction %}
-          <pre class="json-block">{{ prediction | tojson(indent=2) }}</pre>
+          <p><strong>Label:</strong> {{ prediction.label }}</p>
           <div class="tag-list">
             {% for tag in prediction.tags %}
               <span class="pill">{{ tag }}</span>
             {% endfor %}
           </div>
+          {# Optional: show small table of top-k with probabilities #}
+          {# remove this if you don't want to show scores at all #}
+          <!--
+          <ul class="muted">
+            {% for t in prediction.top %}
+              <li>{{ t.name }} — {{ '%.2f'|format(t.prob * 100) }}%</li>
+            {% endfor %}
+          </ul>
+          -->
         {% else %}
           <p class="muted">No analysis yet. Upload an image to see structured attributes.</p>
         {% endif %}
       </div>
+ 
     </section>
   </main>
 

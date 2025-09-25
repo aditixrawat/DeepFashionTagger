@@ -1,7 +1,7 @@
 import os
 from flask import Blueprint, render_template, request, current_app, url_for, redirect
 from werkzeug.utils import secure_filename
-from .predict import predict_image
+from app.predict import predict_image
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
