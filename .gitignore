@@ -1,1 +1,19 @@
+# Ignore Python virtual environment folder
 venv/
+
+# Ignore common environment folders
+env/
+.env/
+
+# Ignore compiled Python files
+*.pyc
+
+# Ignore large file types
+*.dll
+*.pyd
+*.lib
+
+# Ignore dataset or model files
+model_data/
+*.h5
+*.ckpt
