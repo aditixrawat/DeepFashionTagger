@@ -1,7 +1,7 @@
 # app/predict.py
 import os
 import numpy as np
-import keras
+from tensorflow import keras
 
 MODEL_PATH = "model_data/deepfashion.keras"
 LABELS_PATH = "model_data/labels.txt"

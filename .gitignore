@@ -13,7 +13,4 @@ env/
 *.pyd
 *.lib
 
-# Ignore dataset or model files
-model_data/
-*.h5
-*.ckpt
+
